@@ -2,4 +2,4 @@ venv/
 *.pyc
 __pycache__/
 env/
-app/recipe-page-project-firebase-adminsdk-v39uz-c296d89862.json
+app/recipe-page-project-firebase-adminsdk.json
