@@ -1,4 +1,5 @@
 venv/
 *.pyc
 __pycache__/
-firebase-test
+env/
+app/recipe-page-project-firebase-adminsdk-v39uz-c296d89862.json
