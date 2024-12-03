@@ -1,4 +1,6 @@
-{% extends "base.html" %} {% block content %}
+{% extends "base.html" %} 
+{% block title%}Culinary Greats - Home{% endblock %}
+{% block content %}
 <!-- Recipe Cards -->
 <div class="container recipe-div mt-3">
   <div class="row justify-content-center">
@@ -22,4 +24,12 @@
     {% endfor %}
   </div>
 </div>
+<!-- Show error message if no recipes found. -->
+{% if recipes|length == 0 %}
+<div class="container mt-3 align-content-center justify-content-center">
+  <div class="alert alert-danger" role="alert">
+    No recipes found. Please try again or go back to <a href="/">homepage</a>.
+  </div>
+</div>
+{% endif %}
 {% endblock %}

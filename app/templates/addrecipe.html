@@ -1,79 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta
-      charset="UTF-8"
-      name="viewport"
-      content="width=device-width, initial-scale=1.0"
-    />
-    <title>Culinary Greats</title>
-    <link
-      rel="stylesheet"
-      href="{{ url_for('static', filename='css/bootstrap.min.css') }}"
-    />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=account_circle"
-    />
-    <style>
-      .material-symbols-outlined {
-        font-variation-settings: "FILL" 0, "wght" 500, "GRAD" 0, "opsz" 40;
-      }
-
-      .darkorange {
-        color: darkorange;
-      }
-
-      .upload {
-        background-color: gainsboro;
-      }
-
-      label {
-        margin: 6px 0px;
-      }
-
-      .form-control::placeholder {
-        color: black;
-        opacity: 0.25;
-      }
-
-      .remove-button {
-        color: white;
-        background-color: red;
-        border: none;
-        border-radius: 50%;
-        width: 30px;
-        height: 30px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        cursor: pointer;
-      }
-
-      .remove-button:hover {
-        background-color: darkred;
-      }
-    </style>
-  </head>
-  <body style="background-color: white">
-    <!-- Navbar -->
-    <nav class="navbar bg-white shadow">
-      <div class="container-fluid">
-        <a
-          class="navbar-brand me-auto"
-          href="index.html"
-          style="color: darkorange"
-          >Culinary Recipes<span style="color: black">.</span></a
-        >
-        <a class="navbar-brand" href="login.html">
-          <span
-            class="material-symbols-outlined"
-            style="font-size: 35px; color: darkorange"
-            >account_circle</span
-          >
-        </a>
-      </div>
-    </nav>
+{% extends "base.html" %} 
+{% block title%}Culinary Greats - Add Recipe{% endblock %}
+{% block content %}
     <div class="upload container mt-4 p-4 mb-4 rounded shadow">
       <h1 class="darkorange">Upload Recipe</h1>
       <h4>Details</h4>
@@ -335,5 +262,4 @@
         });
       });
     </script>
-  </body>
-</html>
+{% endblock %}

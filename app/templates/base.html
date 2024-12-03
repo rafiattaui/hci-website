@@ -76,11 +76,45 @@
         object-fit: cover;
       }
 
+      .darkorange {
+        color: darkorange;
+      }
+
+      .upload {
+        background-color: gainsboro;
+      }
+
+      label {
+        margin: 6px 0px;
+      }
+
+      .form-control::placeholder {
+        color: black;
+        opacity: 0.25;
+      }
+
+      .remove-button {
+        color: white;
+        background-color: red;
+        border: none;
+        border-radius: 50%;
+        width: 30px;
+        height: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+      }
+
+      .remove-button:hover {
+        background-color: darkred;
+      }
+
     </style>
   </head>
   <body style="background-color: gainsboro">
 <!-- Navbar -->
-<nav class="navbar bg-white shadow">
+<nav class="navbar sticky-top bg-white shadow">
   <div class="container-fluid">
     <!-- Brand -->
     <a class="navbar-brand" href="/" style="color: darkorange">
@@ -92,7 +126,7 @@
       <form
         method="POST"
         class="d-flex align-items-center"
-        style="max-width: 35%; width: 100%"
+        style="max-width: 50%; width: 100%"
       >
         <input
           type="text"
@@ -112,16 +146,11 @@
       </form>
     </div>
 
-    <button class="btn shadow rounded me-3" type="button" data-bs-toggle="button" aria-pressed="false" autocomplete="off" id="themebutton">
+    <button class="btn shadow rounded me-3 btn-secondary" type="button" data-bs-toggle="button" aria-pressed="false" autocomplete="off" id="themebutton">
       Toggle Theme
-    </button>    
-
-    <!-- User Account Icon -->
-    <a class="navbar-brand" href="login.html">
-      <span class="material-symbols-outlined" style="font-size: 35px; color: darkorange;">
-        account_circle
-      </span>
-    </a>
+    </button>
+    <button class="btn shadow rounded me-3 btn-success" type="button" id="addrecipebutton"><a href="/addrecipe" style="color: white; text-decoration: none;">
+      Add Recipe</a></button> 
   </div>
 </nav>
 
