@@ -4,9 +4,7 @@ from firebase_admin import firestore
 
 # Use a service account.
 cred = credentials.Certificate('recipe-page-project-firebase-adminsdk.json')
-
 app = firebase_admin.initialize_app(cred)
-
 db = firestore.client()
 print("Firebase initialized")
 

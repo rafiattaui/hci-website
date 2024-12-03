@@ -19,6 +19,7 @@
 
       .recipe-div {
         background-color: gainsboro;
+        margin-bottom: 20px;
       }
 
       .recipe-card {
@@ -82,7 +83,7 @@
 <nav class="navbar bg-white shadow">
   <div class="container-fluid">
     <!-- Brand -->
-    <a class="navbar-brand" href="#" style="color: darkorange">
+    <a class="navbar-brand" href="/" style="color: darkorange">
       Culinary Recipes<span style="color: black">.</span>
     </a>
 
@@ -95,7 +96,7 @@
       >
         <input
           type="text"
-          placeholder="Search recipes. (Min 3 words)"
+          placeholder="Search recipes. (Min 3 characters)"
           class="form-control me-2"
           aria-label="search"
           name="query"
@@ -110,6 +111,10 @@
         </button>
       </form>
     </div>
+
+    <button class="btn shadow rounded me-3" type="button" data-bs-toggle="button" aria-pressed="false" autocomplete="off" id="themebutton">
+      Toggle Theme
+    </button>    
 
     <!-- User Account Icon -->
     <a class="navbar-brand" href="login.html">
@@ -127,5 +132,38 @@
     {% endblock %}
 
     <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+    <script>
+      var themeButton = document.getElementById("themebutton");
+      themeButton.addEventListener("click", function() {
+        if (themeButton.getAttribute("aria-pressed") === "false") { // Corrected: added parentheses and used strict equality
+          document.body.style.backgroundColor = "black";
+          document.body.style.color = "white";
+          themeButton.setAttribute("aria-pressed", "true");
+          console.log("Dark Mode Enabled");
+        } else {
+          document.body.style.backgroundColor = "gainsboro";
+          document.body.style.color = "black";
+          themeButton.setAttribute("aria-pressed", "false");
+          console.log("Light Mode Enabled");
+        }
+      });
+
+      var searchForm = document.querySelector("form");
+      var searchInput = searchForm.querySelector("input[name='query']");
+      var searchButton = searchForm.querySelector("button[type='submit']");
+
+      searchInput.addEventListener("input", function() {
+        if (searchInput.value.length < 3) {
+          searchButton.disabled = true;
+        } else {
+          searchButton.disabled = false;
+        }
+      });
+
+      // Initial check
+      if (searchInput.value.length < 3) {
+        searchButton.disabled = true;
+      }
+    </script>
   </body>
 </html>
