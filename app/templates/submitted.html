@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}Culinary Greats - Submitted{% endblock %}
+{% block content %}
+<div class="container mt-4 p-4 rounded shadow bg-body-tertiary">
+  <h1 class="darkorange">Recipe Submitted</h1>
+  <p>Your recipe {{ name }} has been submitted successfully. Thank you for sharing!</p>
+  <a href="/" class="btn btn-primary mt-2">Go back to homepage.</a>
+  <a href="addrecipe" class="btn btn-secondary mt-2">Submit another recipe.</a>
+</div>
+{% endblock %}

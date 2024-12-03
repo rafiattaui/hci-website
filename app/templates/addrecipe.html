@@ -23,7 +23,7 @@
           id="recipe-description"
           name="recipe_description"
           rows="4"
-          placeholder="Short description/summary of the recipe"
+          placeholder="Short description / summary of the recipe."
           required
         ></textarea>
 
@@ -137,7 +137,7 @@
           >
             Add Step
           </button>
-          <button type="submit" class="btn btn-primary">Submit</button>
+          <button type="submit" class="btn btn-primary" id="submit">Submit</button>
         </div>
       </form>
     </div>
@@ -147,6 +147,7 @@
 
     <!-- JavaScript for adding and removing Ingredients and warning. -->
     <script>
+      // Form modified flag
       let formModified = false;
 
       // Detect changes in the form

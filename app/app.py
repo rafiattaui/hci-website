@@ -12,7 +12,6 @@ recipes_ref = db.collection('recipes')
 
 @app.route("/")
 def index():
-    
     # Fetch recipes from Firestore
     recipes = [doc.to_dict() for doc in recipes_ref.stream()]
     
@@ -67,10 +66,9 @@ def submit():
         'steps': recipe_steps,
     }
 
-    recipes_ref.add(recipe_data)
+    # recipes_ref.add(recipe_data)
     
-    # You can process the data here, save it to a database, or return a response
-    return f"Recipe '{recipe_name}' submitted successfully!"
+    return render_template("submitted.html", name=recipe_data["name"])
 
 if __name__ == "__main__":
     app.run(debug=True)
