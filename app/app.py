@@ -13,7 +13,9 @@ recipes_ref = db.collection('recipes')
 @app.route("/")
 def index():
     # Fetch recipes from Firestore
-    recipes = [doc.to_dict() for doc in recipes_ref.stream()]
+    recipes = [
+        {**doc.to_dict(), "id": doc.id} for doc in recipes_ref.stream()
+    ]
     
     # Pass documents to templates in the form of a list with recipe dictionaries
     return render_template("recipes.html", recipes=recipes)
@@ -24,7 +26,7 @@ def index_query():
     if request.method == "POST":
         query = request.form.get("query","".lower())
         docs = recipes_ref.stream()
-        recipes = [doc.to_dict() for doc in docs if query in doc.to_dict()['name'].lower()]
+        recipes = [{**doc.to_dict(), "id": doc.id} for doc in docs if query in doc.to_dict()['name'].lower()]
         return render_template("recipes.html", recipes=recipes)
     
 @app.route("/addrecipe")
@@ -66,9 +68,15 @@ def submit():
         'steps': recipe_steps,
     }
 
-    # recipes_ref.add(recipe_data)
+    # recipes_ref.add(recipe_data) # Add data to database
+    return render_template("submitted.html", name=recipe_data["name"]) # Redirect to submitted page
+
+@app.route("/recipe=<recipeid>")
+def recipe(recipeid):
     
-    return render_template("submitted.html", name=recipe_data["name"])
+    # Fetch document using recipe id, and turn it to a dictionary.
+    recipe = recipes_ref.document(recipeid).get().to_dict()
+    return f"{recipe['name']} fetched successfully"
 
 if __name__ == "__main__":
     app.run(debug=True)
