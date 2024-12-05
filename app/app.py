@@ -71,11 +71,18 @@ def submit():
     # recipes_ref.add(recipe_data) # Add data to database
     return render_template("submitted.html", name=recipe_data["name"], len=len(recipe_description.replace(" ",""))) # Redirect to submitted page
 
+@app.route("/editrecipe=<recipeid>")
+def editrecipe(recipeid):
+    recipe = recipes_ref.document(recipeid).get().to_dict()
+    print(recipe)
+    return render_template("editrecipe.html", recipe=recipe)
+
 @app.route("/recipe=<recipeid>")
 def recipe(recipeid):
     
     # Fetch document using recipe id, and turn it to a dictionary.
     recipe = recipes_ref.document(recipeid).get().to_dict()
+    print(recipe)
     return f"{recipe['name']} fetched successfully"
 
 @app.errorhandler(404)
