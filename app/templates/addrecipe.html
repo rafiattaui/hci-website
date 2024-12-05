@@ -147,11 +147,9 @@
 
     <!-- JavaScript for adding and removing Ingredients and warning. -->
     <script>
-      // Form modified flag
+      // Form modified flag for detecting unsaved changes
       let formModified = false;
-
-      // Detect changes in the form
-      document.querySelectorAll("input, select").forEach((input) => {
+      document.querySelectorAll("input, select, textarea").forEach((input) => {
         input.addEventListener("input", () => {
           formModified = true;
         });
