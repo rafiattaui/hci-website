@@ -22,7 +22,7 @@ def create_recipe(dict):
     # Create recipe
     # ingredients is a dictionary with ingredient names as keys and quantities as values
     # tags is a list of strings
-    # difficulty is an integer between 0 and 5
+    # difficulty is an integer between 1 and 3
     # imageurl is a string
     # name is a string
     # description is a string
