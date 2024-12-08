@@ -34,6 +34,22 @@ def addrecipe():
     return render_template("addrecipe.html")
 
 @app.route("/submit", methods=["POST"])
+
+# Handle the submission of a new recipe via a POST request.
+# This function retrieves form data submitted by the user, processes it, and stores it in the database.
+# It also prints the submitted data to the console for debugging purposes and renders a confirmation page.
+# Form Data:
+#     recipe_name (str): The name of the recipe.
+#     recipe_description (str): A description of the recipe.
+#     recipe_video (str): A URL to a video of the recipe.
+#     recipe_image (str): A URL to an image of the recipe.
+#     recipe_difficulty (str): The difficulty level of the recipe.
+#     ingredient_name[] (list of str): A list of ingredient names.
+#     ingredient_quantity[] (list of str): A list of ingredient quantities corresponding to the ingredient names.
+#     recipe_step[] (list of str): A list of steps to prepare the recipe.
+# Returns:
+#     Response: Renders the 'submitted.html' template with the recipe name and the length of the description (excluding spaces).
+    
 def submit():
     # Access form data
     recipe_name = request.form["recipe_name"]
