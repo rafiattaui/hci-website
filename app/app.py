@@ -27,7 +27,7 @@ def index_query():
         query = request.form.get("query","".lower())
         docs = recipes_ref.stream()
         recipes = [{**doc.to_dict(), "id": doc.id} for doc in docs if query in doc.to_dict()['name'].lower()]
-        return render_template("recipes.html", recipes=recipes)
+        return render_template("recipes.html", recipes=recipes, query=query)
     
 @app.route("/addrecipe")
 def addrecipe():
@@ -68,7 +68,7 @@ def submit():
         'steps': recipe_steps,
     }
 
-    # recipes_ref.add(recipe_data) # Add data to database
+    recipes_ref.add(recipe_data) # Add data to database
     return render_template("submitted.html", name=recipe_data["name"], len=len(recipe_description.replace(" ",""))) # Redirect to submitted page
 
 @app.route("/editrecipe=<recipeid>")
@@ -133,7 +133,7 @@ def base():
 @app.route("/deleterecipe=<recipeid>")
 def deleterecipe(recipeid):
     name = recipes_ref.document(recipeid).get().to_dict()["name"]
-    # recipes_ref.document(recipeid).delete()
+    recipes_ref.document(recipeid).delete()
     return render_template("deleted.html", name=name)
 
 if __name__ == "__main__":
