@@ -1,135 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Culinary Greats</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" />
-    <link rel="stylesheet" href="css/bootstrap.min.css" />
-    <link rel="stylesheet" href="css/recipepage.css" />
-    <script src="js/bootstrap.bundle.min.js"></script>
-    <style>
-      .material-symbols-outlined {
-        font-variation-settings: "FILL" 0, "wght" 500, "GRAD" 0, "opsz" 40;
-      }
-
-      .recipe-div {
-        background-color: gainsboro;
-      }
-
-      .recipe-card {
-        border: 2px solid black;
-        border-radius: 10px;
-        transform: scale(0.95);
-        max-width: 25rem;
-      }
-
-      .recipe-title {
-        font-size: 1.5rem;
-        font-weight: 600;
-        color: darkorange;
-      }
-
-      .cook-button {
-        color: black;
-        background-color: darkorange;
-        font-weight: 600;
-        font-size: 1rem;
-      }
-
-      .cook-button:hover {
-        transform: scale(1.1);
-        color: darkorange;
-        background-color: black;
-      }
-
-      .btn {
-        transition: transform 0.3s, background-color 0.3s;
-      }
-
-      .card {
-        transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for transform and shadow */
-      }
-
-      .card:hover {
-        transform: scale(1.05); /* Scale the card slightly */
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); /* Increase shadow effect */
-      }
-
-      @media (max-width: 576px) {
-        .recipe-div {
-          padding: 10px;
-        }
-        .card {
-          margin-bottom: 20px;
-        }
-      }
-
-      .recipe-img {
-        height: 150px;
-        max-width: 100%;
-        object-fit: cover;
-        
-      }
-    </style>
-  </head>
-  <body style="background-color: gainsboro">
-    <!-- Navbar -->
-    <nav class="navbar bg-white shadow">
-      <div class="container-fluid">
-        <a class="navbar-brand me-auto" href="#" style="color: darkorange"
-          >Culinary Recipes<span style="color: black">.</span></a
-        >
-        <div
-          class="input-group flex-nowrap justify-content-center me-auto text-center"
-          style="
-            border: 3px solid black;
-            border-radius: 10px;
-            max-width: 35%;
-            margin: 0;
-          "
-        >
-          <input
-            type="text"
-            placeholder="Search recipes."
-            class="form-control"
-            aria-label="search"
-            aria-describedby="addon-wrapping"
-          />
-          <button
-            type="submit"
-            class="btn"
-            style="color: black; background-color: darkorange; font-weight: 550"
-          >
-            Search
-          </button>
-        </div>
-        <a class="navbar-brand" href="login.html">
-          <span
-            class="material-symbols-outlined"
-            style="font-size: 35px; color: darkorange"
-            >account_circle</span
-          >
-        </a>
-      </div>
-    </nav>
-
+{% extends "base.html" %}
+{% block title %}Culinary Greats - {{ recipe.name }}{% endblock %}
+{% block extrahead %}
+<link
+rel="stylesheet"
+href="{{ url_for('static', filename='css/recipepage.css') }}"
+/>
+{% endblock %}
+{% block content %}
     <div class="container-fluid shadow-lg" id="recipebackground">
       <div class="container-fluid">
-        <div class="h1 text-center" style="color: darkorange; text-shadow: 10px;">Ethan</div>
+        <div class="h1 text-center" style="color: darkorange; text-shadow: 10px;">{{recipe.name}}</div>
         <div class="row">
           <div class="col-12" id= "carouselComponent" style="padding: 0% !important;" data-bs-theme="dark">
-            <div id="carouselExample" class="carousel slide">
+            <div id="carouselExample" class="carousel slide mb-2">
               <div class="carousel-inner">
-                <div class="carousel-item active">
-                  <img src="#" class="d-block w-95 m-auto img-fluid" alt="...">
+                <div class="carousel-item active shadow-lg">
+                  <img src="{{recipe.imageurl}}" class="d-block w-95 m-auto img-fluid rounded" alt="{{recipe.name}}, {{recipe.description}}">
                 </div>
-                <div class="carousel-item">
+                {% if recipe.videourl %}
+                <div class="carousel-item shadow-lg">
                   <div class="container d-flex justify-content-center">
                     <iframe
                     width="670"
                     height="480"
-                    src="https://youtu.be/alol8ioXZRQ"
+                    src="{{recipe.videourl}}"
                     title="YouTube video player"
                     frameborder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture;"
@@ -137,7 +31,9 @@
                     </iframe>
                   </div>
                 </div>
+                {% endif %}
               </div>
+              {% if recipe.videourl %}
               <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Previous</span>
@@ -146,6 +42,7 @@
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Next</span>
               </button>
+              {% endif %}
             </div>
           </div>
         </div>
@@ -157,11 +54,11 @@
             <div class="box box-left bg-light p-4" style="text-align: justify; border: 3px solid black; border-radius: 10px;" id="sbs">
               <h5 class="text-center" style="color: darkorange;">Step-by-step</h5>
                 <p class="mb-0" style="color: black">
-                <div>Step 1<br> Melt butter in a large pot over medium heat. Add onion and celery and cook until just tender, about 5 minutes.<br></div>
-                <div>Step 2<br> Add chicken broth, vegetable broth, chicken, egg noodles, carrots, basil, oregano, salt, and pepper. Stir to combine and bring to a boil.<br></div>
-                <div>Step 3<br> Reduce heat and simmer for 20 minutes.<br></div>
-              </p>
-            </div>
+                  {% for step in recipe.steps %}
+                  <div class="fs-5"><span class="darkorange">Step {{loop.index}}</span><br> {{ step }}<br></div>
+                  {% endfor %}
+                </p>
+          </div>
             <div class="box box-left mt-3 bg-light p-4" style="border: 3px solid black; border-radius: 10px;">
               <h5 class="text" style="color: darkorange; margin-left: 10px;">FAQ</h5>
               <div class="accordion" id="accordionExample">
@@ -198,17 +95,9 @@
                 <h5 class="text-center" style="color: darkorange;">Ingredients</h5>
               <p class="mb-0">
                 <ul>
-                  <li>1 tablespoon butter</li>
-                  <li>½ cup chopped onion</li>
-                  <li>½ cup chopped celery</li>
-                  <li>4 (14.5 ounce) cans chicken broth</li>
-                  <li>1 (14.5 ounce) can vegetable broth</li>
-                  <li>½ pound chopped cooked chicken breast</li>
-                  <li>1 ½ cups egg noodles</li>
-                  <li>1 cup sliced carrots</li>
-                  <li>½ teaspoon dried basil</li>
-                  <li>½ teaspoon dried oregano</li>
-                  <li>salt and ground black pepper to taste</li>
+                  {% for ingredient, quantity in recipe.ingredients.items() %}
+                  <li class="fs-5"><span class="darkorange">{{ quantity }}</span> {{ ingredient.capitalize() }}</li>
+                  {% endfor %}
                 </ul>
               </p>
             </div>
@@ -281,5 +170,4 @@
       </div>
     </div>
     <script src="js/bootstrap.min.js"></script>
-</body>
-</html>
+{% endblock %}

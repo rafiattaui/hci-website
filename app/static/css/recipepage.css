@@ -15,7 +15,7 @@ carousel-item {
 
 .carousel-item img {
 object-fit: contain;
-border: 1px solid black;
+border: 2px solid black;
 max-height: 480px;
 max-width: 670px;
 }
@@ -34,5 +34,9 @@ max-width: 670px;
 
 #recipeComponent {
 margin-top: 10px;
+}
+
+.darkorange {
+    color: darkorange;
 }
 

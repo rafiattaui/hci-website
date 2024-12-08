@@ -83,7 +83,7 @@ def recipe(recipeid):
     # Fetch document using recipe id, and turn it to a dictionary.
     recipe = recipes_ref.document(recipeid).get().to_dict()
     print(recipe)
-    return f"{recipe['name']} fetched successfully"
+    return render_template("RecipePage.html", recipe=recipe)
 
 @app.errorhandler(404)
 def page_not_found(e):
