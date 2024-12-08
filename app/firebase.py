@@ -45,3 +45,6 @@ def get_ids():
     # Get all recipe ids
     recipes_ref = db.collection('recipes')
     return [doc.id for doc in recipes_ref.stream()]
+
+doc_ref = db.collection('recipes').document('zADB5D3wgIlSJkiib0uR')
+db.collection('recipes').add(doc_ref.get().to_dict())

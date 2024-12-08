@@ -73,15 +73,52 @@ def submit():
 
 @app.route("/editrecipe=<recipeid>")
 def editrecipe(recipeid):
-    recipe = recipes_ref.document(recipeid).get().to_dict()
+    
+    # Fetch document using recipe id, and turn it to a dictionary.
+    doc_ref = recipes_ref.document(recipeid)
+    recipe = {**doc_ref.get().to_dict(), "id": doc_ref.id}
     print(recipe)
     return render_template("editrecipe.html", recipe=recipe)
+
+@app.route("/update=<recipeid>", methods=["POST"])
+def update(recipeid):
+    # Access form data
+    recipe_name = request.form["recipe_name"]
+    recipe_description = request.form["recipe_description"]
+    recipe_video = request.form["recipe_video"]
+    recipe_image = request.form["recipe_image"]
+    recipe_difficulty = request.form["recipe_difficulty"]
+    
+    # Ingredients (Access ingredients names and quantities as seperate lists)
+    ingredient_names = request.form.getlist("ingredient_name[]")
+    ingredient_quantities = request.form.getlist("ingredient_quantity[]")
+    
+    # Steps (Access step descriptions as a list)
+    recipe_steps = request.form.getlist("recipe_step[]")
+    
+    recipe_data = {
+        'name': recipe_name,
+        'description': recipe_description,
+        'video': recipe_video,
+        'imageurl': recipe_image,
+        'difficulty': recipe_difficulty,
+        'ingredients': dict(zip(ingredient_names, ingredient_quantities)),
+        'steps': recipe_steps,
+    }
+    
+    doc_ref = recipes_ref.document(recipeid)
+    doc_ref.set(recipe_data)
+    print(recipe_data)
+    
+    return render_template("update.html", name=recipe_data["name"])
+    
 
 @app.route("/recipe=<recipeid>")
 def recipe(recipeid):
     
     # Fetch document using recipe id, and turn it to a dictionary.
-    recipe = recipes_ref.document(recipeid).get().to_dict()
+    doc_ref = recipes_ref.document(recipeid)
+    recipe = {**doc_ref.get().to_dict(), "id": doc_ref.id}
     print(recipe)
     return render_template("RecipePage.html", recipe=recipe)
 
@@ -92,6 +129,12 @@ def page_not_found(e):
 @app.route("/base")
 def base():
     return render_template("base.html")
+
+@app.route("/deleterecipe=<recipeid>")
+def deleterecipe(recipeid):
+    name = recipes_ref.document(recipeid).get().to_dict()["name"]
+    # recipes_ref.document(recipeid).delete()
+    return render_template("deleted.html", name=name)
 
 if __name__ == "__main__":
     app.run(debug=True)
