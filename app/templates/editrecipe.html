@@ -38,7 +38,7 @@ endblock %} {% block content %}
       id="recipe-video"
       name="recipe_video"
       placeholder="https://www.youtube.com/watch?v=example (Optional)"
-      value="{{ recipe.videourl }}"
+      value="{{ recipe.video }}"
     />
 
     <label for="recipe-image" class="form-label"
@@ -62,8 +62,7 @@ endblock %} {% block content %}
       name="recipe_difficulty"
       required
     >
-      <option selected>Choose...</option>
-      <option value="easy"{% if recipe.difficulty == 1%} selected {% endif %}>Easy</option>
+      <option value="easy" selected >Easy</option>
       <option value="medium"{% if recipe.difficulty == 2%} selected {% endif %}>Medium</option>
       <option value="hard"{% if recipe.difficulty == 3%} selected {% endif %}>Hard</option>
     </select>
@@ -143,7 +142,7 @@ endblock %} {% block content %}
       >
         Add Step
       </button>
-      <button type="submit" class="btn btn-primary" id="submit">Submit</button>
+      <button type="submit" class="btn btn-primary" id="submit">Save Edit</button>
     </div>
   </form>
 </div>
