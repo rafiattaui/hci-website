@@ -1,12 +1,12 @@
-Simple python webapp displaying recipes using Flask, Bootstrap CSS and Firebase Firestore, a NoSQL database, to store recipes.
+Simple <span style="color:orange;">python</span> webapp displaying recipes using Flask, Bootstrap CSS and <span style="color:red;">Firebase Firestore</span>, a NoSQL database, to store recipes.
 
-- Features Currently Implemented:
+- <span style="color:green;">Features Currently Implemented:
     - Add recipe
     - Edit recipe
     - Remove recipe
     - View recipe
 
-- Features to be added:
+- <span style="color:blue;">Features to be added:
   - Theme Changing
   - FAQ
 
