@@ -84,7 +84,7 @@ def submit():
         'steps': recipe_steps,
     }
     
-    if not (len(recipe_description.replace(" ","")) < 100):
+    if not (len(recipe_description.replace(" ","")) > 100):
         recipes_ref.add(recipe_data) # Add data to database
 
     return render_template("submitted.html", name=recipe_data["name"], len=len(recipe_description.replace(" ",""))) # Redirect to submitted page
