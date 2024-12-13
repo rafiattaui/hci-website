@@ -63,12 +63,22 @@
         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); /* Increase shadow effect */
       }
 
+      #searchform {
+        max-width: 100%;
+        min-width: 500px;
+      }
+
       @media (max-width: 576px) {
         .recipe-div {
           padding: 10px;
         }
         .card {
           margin-bottom: 20px;
+        }
+
+        #searchform {
+          min-width: 50%;
+          max-width: 100%;
         }
       }
 
@@ -137,13 +147,14 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav mx-auto">
             <li class="nav-item">
-              <a href="/" class="btn btn-dark me-2 text-white">Home</a>
+              <a href="/" class="btn btn-dark me-2 mt-2 text-white">Home</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item mt-2">
               <form
+                id="searchform"
+                action="{{ url_for('index_query') }}"
                 method="POST"
                 class="d-flex align-items-center"
-                style="max-width: 100%; min-width: 500px"
               >
                 <input
                   type="text"
@@ -181,7 +192,7 @@
               </form>
             </li>
           </ul>
-          <div class="d-flex align-items-center">
+          <div class="d-flex align-items-center mt-2">
             <button
               class="btn shadow rounded me-3 btn-secondary"
               type="button"
