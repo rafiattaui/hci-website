@@ -1,6 +1,10 @@
-{% extends "base.html" %} 
-{% block title%}Culinary Greats - Home{% endblock %}
-{% block content %}
+{% extends "base.html" %} {% block title%}Culinary Greats - Home{% endblock %}
+{% block extrahead %}
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='css/recipe-card.css') }}"
+/>
+{% endblock %} {% block content %}
 <!-- Recipe Cards -->
 <div class="container recipe-div mt-3">
   <div class="row justify-content-center">
@@ -13,6 +17,11 @@
           class="card-img-top recipe-img"
           alt="{{ recipe.name }}"
         />
+        <div class="card-img-overlay">
+          <div class="card-text recipe-difficulty rounded">
+            {{recipe.difficulty}}
+          </div>
+        </div>
         <div class="card-body">
           <h5 class="card-title recipe-title">{{recipe.name}}</h5>
           <p class="card-text" style="height: 70px">{{recipe.description}}</p>
@@ -31,5 +40,4 @@
     No recipes found. Please try again or go back to <a href="/">homepage</a>.
   </div>
 </div>
-{% endif %}
-{% endblock %}
+{% endif %} {% endblock %}
