@@ -279,7 +279,7 @@
       if (searchInput.value.length < 3) {
         searchButton.disabled = true;
       }
-      // Footer position
+      // Footer position, if content is shorter than viewport, fix to bottom of viewport.
       document.addEventListener("DOMContentLoaded", function () {
         const footer = document.querySelector(".footer");
         const bodyHeight = document.body.offsetHeight;
@@ -292,6 +292,7 @@
           footer.style.left = "0";
           footer.style.width = "100%";
         } else {
+          // If content is longer than the viewport, position relative.
           footer.style.position = "relative";
         }
       });
