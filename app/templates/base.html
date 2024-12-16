@@ -197,16 +197,6 @@
             </li>
           </ul>
           <div class="d-flex align-items-center mt-2">
-            <button
-              class="btn shadow rounded me-3 btn-secondary"
-              type="button"
-              data-bs-toggle="button"
-              aria-pressed="false"
-              autocomplete="off"
-              id="themebutton"
-            >
-              Toggle Theme
-            </button>
             <a href="/addrecipe" class="shadow text-white text-decoration-none">
               <button
                 class="btn shadow rounded me-3 btn-success"
@@ -245,23 +235,6 @@
       const tooltipList = [...tooltipTriggerList].map(
         (tooltipTriggerEl) => new bootstrap.Tooltip(tooltipTriggerEl)
       );
-
-      // Theme Button
-      var themeButton = document.getElementById("themebutton");
-      themeButton.addEventListener("click", function () {
-        if (themeButton.getAttribute("aria-pressed") === "false") {
-          // Corrected: added parentheses and used strict equality
-          document.body.style.backgroundColor = "black";
-          document.body.style.color = "white";
-          themeButton.setAttribute("aria-pressed", "true");
-          console.log("Dark Mode Enabled");
-        } else {
-          document.body.style.backgroundColor = "gainsboro";
-          document.body.style.color = "black";
-          themeButton.setAttribute("aria-pressed", "false");
-          console.log("Light Mode Enabled");
-        }
-      });
 
       var searchForm = document.querySelector("form");
       var searchInput = searchForm.querySelector("input[name='query']");
